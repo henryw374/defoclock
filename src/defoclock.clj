@@ -1,9 +1,42 @@
  (ns defoclock)
  
+ (defn- locals [bindings]
+   (->>
+     bindings
+     (partition 2)
+     (filter (comp not keyword? first))
+     (apply concat)
+     (destructure)
+     (partition 2)
+     (map first )))
  
-(defmacro deflet [bindings & body]
+ (defn- dodefs [bindings]
+   (for [v (locals bindings)]
+     (list 'def v v)))
+ 
+(defmacro dlet [bindings & body]
   `(let ~bindings
-     ~@(for [v (map first (partition 2 (destructure bindings)))]
+     ~@(dodefs bindings)))
+
+(defmacro dloop [bindings & body]
+  `(let ~bindings
+     ~@(dodefs bindings)))
+ 
+ (defmacro dfor [bindings & body]
+   `(take 1
+      (for ~bindings
+        ~(dodefs bindings))))
+
+(defmacro ddoseq [bindings & body]
+  `(take 1
+     (for ~bindings
+       ~(dodefs bindings))))
+ 
+ (defmacro ddefn [args fn-name arg-decls & more]
+   `(let ~(vec (interleave arg-decls args))
+      ~@(for [v (->> (destructure (vec (interleave arg-decls args)))
+                     (partition 2)
+                     (map first))]
          (list 'def v v))))
  
  
