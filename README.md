@@ -2,6 +2,10 @@
 
 For when it's time to start def'ing stuff in the REPL
 
+```
+[henryw374/defoclock "0.1.0"]
+```
+
 ## Rationale
 
 You've just hammered out a function and it compiles
