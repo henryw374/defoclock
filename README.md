@@ -8,7 +8,7 @@ For when it's time to start def'ing stuff in the REPL
 
 ## Rationale
 
-You've just hammered out a function and it compiles
+You've just hammered out a function and it compiled
 
 ```
 (defn foo [bar]
@@ -78,13 +78,34 @@ current ns.
 
 ```
 
-Now change your `(let  [...])` to `(dlet  [...])` and evaluate the `dlet` form in the repl.
+or in a cljs repl
+
+```
+(require '[defoclock :refer-macros [dlet dloop dfor ddoseq ddefn]])
+```
+
+Now change your `(let  [...])` to `(dlet  [...])` and evaluate the `(dlet [...]` form in the repl. Pro-tip: Your 
+IDE will have built-in commands to send forms to your repl for evaluation
 
 Boom! You now have `x`, `y` and `z` def'd in your repl. Letting you just evaluate the 
 `{y (apply + x z)}` bit from your function, and then keep going on smaller bits until the problem becomes apparent 
 
+It is possible that the evaluation blows up before all the local variables have been defined. Consider:
 
-## Usage
+```
+(dlet [x (/ 1 0)]
+  (inc x))
+```
+
+but in that case, just go through your local variables in order, evaluatiing them at the repl to check
+they are what you think they should be. So for example with this form above, eval `x` at the repl, you'll
+see it is undefined, so it points to the problem being there.
+
+Seasoned Clojurians will already know this, but to avoid your namespaces getting cluttered with the vars
+produced by defoclock, use the [Reloaded Workflow](http://thinkrelevance.com/blog/2013/06/04/clojure-workflow-reloaded)
+or in Clojurescript, reload your browser or other environment.
+
+## Basic Usage
 
 ```
 [henryw374/defoclock "0.1.0"]
@@ -92,6 +113,12 @@ Boom! You now have `x`, `y` and `z` def'd in your repl. Letting you just evaluat
 
 ```
 (use 'defoclock)
+```
+
+or in a cljs repl
+
+```
+(require '[defoclock :refer-macros [dlet dloop dfor ddoseq ddefn]])
 ```
 
 Provides equivalent of clojure.core local binding macros: dlet, dloop, dfor, ddoseq

@@ -15,12 +15,11 @@
      (list 'def v v)))
  
 (defmacro dlet [bindings & body]
-  `(let ~bindings
-     ~@(dodefs bindings)))
+  (vec (for [[d v] (->> bindings destructure (partition 2))]
+         (list 'def d v))))
 
 (defmacro dloop [bindings & body]
-  `(let ~bindings
-     ~@(dodefs bindings)))
+  `(dlet ~bindings))
  
  (defmacro dfor [bindings & body]
    `(take 1
