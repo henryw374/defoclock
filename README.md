@@ -3,7 +3,7 @@
 For when it's time to start def'ing stuff in the REPL
 
 ```
-[henryw374/defoclock "0.1.0"]
+[henryw374/defoclock "0.1.1"]
 ```
 
 ## Rationale
@@ -30,13 +30,16 @@ but oh no! There is a problem
 IllegalArgumentException Don't know how to create ISeq from: java.lang.Integer  clojure.lang.RT.seqFrom (RT.java:550)
 ```
 
-Now what? Well there are several options
+Now what? Well, for example you might proceed like this:
  
-1) Start mentally executing the function. Get the full stack trace for the line number to help
- narrow things down a bit too. Well, let's say nothing jumps out at you so you start on 
- option 2.
+Start mentally executing the function. Get the full stack trace for the line number to help
+ narrow things down a bit too. Let's say nothing jumps out at you as wrong, 
+ or changes you think might fix it don't work.
  
-2) Switch to the namespace of the function and start def'ing stuff ...
+Another strategy would be try to start narrowing the problem space down, (see [Debugging with Scientific Method](https://www.youtube.com/watch?v=FihU5JxmnBg))
+ for example. Let's try that:
+ 
+Switch to the namespace of the function and start def'ing stuff ...
 
 ```
 (in-ns 'foo)
@@ -108,18 +111,22 @@ or in Clojurescript, reload your browser or other environment.
 ## Basic Usage
 
 ```
-[henryw374/defoclock "0.1.0"]
+[henryw374/defoclock "0.1.1"]
 ```
+
+In Clojure
 
 ```
 (use 'defoclock)
 ```
 
-or in a cljs repl
+or, so it also works in a cljs repl
 
 ```
-(require '[defoclock :refer-macros [dlet dloop dfor ddoseq ddefn]])
+(require '[defoclock :refer-macros [dlet dloop dfor ddoseq ddefn] :refer [dlet dloop dfor ddoseq ddefn]])
 ```
+
+Pro-tip: Bind this command to a key in your IDE so you can instantly bring in defoclock anytime
 
 Provides equivalent of clojure.core local binding macros: dlet, dloop, dfor, ddoseq
 
