@@ -6,6 +6,12 @@ For when it's time to start def'ing stuff in the REPL
 [henryw374/defoclock "0.1.1"]
 ```
 
+## Comparison
+
+[scope-capture](https://github.com/vvvvalvalval/scope-capture) is more comprehensive and featured than this, so 
+definitely check that out. However, I find that for debugging tests in Clojurescript, this library
+is a bit quicker and easier to use.
+
 ## Rationale
 
 You've just hammered out a function and it compiled
