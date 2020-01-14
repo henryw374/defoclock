@@ -83,14 +83,14 @@ Defoclock can be used to speed things up here. There are various macros which wi
 current ns. 
 
 ```
-(use 'defoclock)
+(use 'widdindustries.defoclock)
 
 ```
 
 or in a cljs repl
 
 ```
-(require '[defoclock :refer-macros [dlet dloop dfor ddoseq ddefn]])
+(require '[widdindustries.defoclock :refer-macros [dlet dloop dfor ddoseq ddefn]])
 ```
 
 Now change your `(let  [...])` to `(dlet  [...])` and evaluate the `(dlet [...]` form in the repl. Pro-tip: Your 
@@ -123,13 +123,13 @@ or in Clojurescript, reload your browser or other environment.
 In Clojure
 
 ```
-(use 'defoclock)
+(use 'widdindustries.defoclock)
 ```
 
 or, so it also works in a cljs repl
 
 ```
-(require '[defoclock :refer-macros [dlet dloop dfor ddoseq ddefn] :refer [dlet dloop dfor ddoseq ddefn]])
+(require '[widdindustries.defoclock :refer-macros [dlet dloop dfor ddoseq ddefn] :refer [dlet dloop dfor ddoseq ddefn]])
 ```
 
 Pro-tip: Bind this command to a key in your IDE so you can instantly bring in defoclock anytime

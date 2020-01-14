@@ -1,6 +1,16 @@
- (ns defoclock)
- 
- (defn- locals [bindings]
+ (ns widdindustries.defoclock)
+
+(defn- envd [amp-env]
+  (into {}
+    (map (fn [x]
+           [(keyword x ) x]))
+    (keys amp-env)))
+
+(defmacro env-data []
+  (envd &env))
+
+
+(defn- locals [bindings]
    (->>
      bindings
      (partition 2)
