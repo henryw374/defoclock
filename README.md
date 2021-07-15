@@ -9,8 +9,7 @@ For when it's time to start def'ing stuff in the REPL
 ## Comparison
 
 [scope-capture](https://github.com/vvvvalvalval/scope-capture) is more comprehensive and featured than this, so 
-definitely check that out. However, I find that for debugging tests in Clojurescript, this library
-is a bit quicker and easier to use.
+definitely check that out. I didn't realise that existed when I made this and I only use that lib now.
 
 ## Rationale
 
